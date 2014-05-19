@@ -58,11 +58,10 @@ gib_topic <- topics(gib)
 ##Classification
 class=c("earn","acq","money-fx","grain","crude",
         "trade","interest","ship","wheat","corn")
+##­NaiveBayes(dtm[class]~.,dtm)
+
 ##Clustering
-dist_dtm <- dist(scale(dtm3))
+dist_dtm <- dist(scale(dtm3)) ##HAC
 hcluster <-hclust(dist_dtm,method="average")
-a<-meta(rt[[1]])$TOPICS
-for(i in 2:21578){
-  b<-meta(rt[[i]])$TOPICS
-  a<-c(a,b)
-}
+
+km <- kmeans(norm.tdm,10) ##K-means
